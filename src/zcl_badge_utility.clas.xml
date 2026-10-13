@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_BADGE_UTILITY</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Utility Class for Badge and QR Operations</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_BADGE_UTILITY</CLSNAME>
+     <CMPNAME>GENERATE_QR_CODE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Generates a QR Code Image from an external API</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>GENERATE_QR_CODE</CMPNAME>
+     <SCONAME>EV_MIME_TYPE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>MIME type (image/png)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GENERATE_QR_CODE</CMPNAME>
+     <SCONAME>EV_PAYLOAD</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The text encoded in the QR</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GENERATE_QR_CODE</CMPNAME>
+     <SCONAME>EV_QR_IMAGE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Binary image data (PNG)</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

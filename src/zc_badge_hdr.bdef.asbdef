@@ -1,0 +1,30 @@
+projection;
+strict ( 2 );
+use draft; // <-- Missing in your code
+
+define behavior for ZC_BADGE_HDR alias Badge
+{
+  use create;
+  use update;
+  use delete;
+
+  // <-- Missing draft actions in your code
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+  use action GenerateQRCode;
+
+  /* Expose the association to the child */
+  use association _QRData { create; with draft; } // <-- Missing 'with draft'
+}
+
+define behavior for ZC_QR_DATA alias QrData
+{
+  use update;
+  use delete;
+
+  /* Expose the association back to the parent */
+  use association _Badge { with draft; } // <-- Missing 'with draft'
+}

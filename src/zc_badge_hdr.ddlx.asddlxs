@@ -1,0 +1,97 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Badge',
+    typeNamePlural: 'Badges',
+    title: { type: #STANDARD, value: 'FullName' },
+    description: { type: #STANDARD, value: 'BadgeType' }
+  }
+}
+annotate view ZC_BADGE_HDR with 
+{
+  /* --- FACETS (Object Page Layout) --- */
+  @UI.facet: [
+    {
+      id: 'GeneralInfo',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'General Information',
+      position: 10
+    },
+    {
+      id: 'AdminData',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Administrative Data',
+      targetQualifier: 'AdminGroup',
+      position: 20
+    },
+    {
+      id: 'QRCodes',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'QR Codes',
+      position: 30,
+      targetElement: '_QRData'
+    }
+  ]
+
+  /* --- FIELDS --- */
+  
+  @UI.selectionField: [{ position: 10 }]
+  @UI.lineItem: [{ position: 10, label: 'Badge ID' }]
+  @UI.identification: [ 
+    { position: 10, label: 'Badge ID' },
+    { type: #FOR_ACTION, dataAction: 'GenerateQRCode', label: 'Generate QR Code', position: 1 } 
+  ]
+  BadgeId;
+
+  @UI.selectionField: [{ position: 20 }]
+  @UI.lineItem: [{ position: 20, label: 'Full Name' }]
+  @UI.identification: [{ position: 20, label: 'Full Name' }]
+  FullName;
+
+  @UI.selectionField: [{ position: 30 }]
+  @UI.lineItem: [{ position: 30, label: 'Badge Type' }]
+  @UI.identification: [{ position: 30, label: 'Badge Type' }]
+  BadgeType;
+
+  @UI.selectionField: [{ position: 40 }]
+  @UI.lineItem: [{ position: 40, label: 'Company Name' }]
+  @UI.identification: [{ position: 40, label: 'Company Name' }]
+  CompanyName;
+
+  @UI.lineItem: [{ position: 50, label: 'Valid From' }]
+  @UI.identification: [{ position: 50, label: 'Valid From' }]
+  ValidFrom;
+
+  @UI.lineItem: [{ position: 60, label: 'Valid To' }]
+  @UI.identification: [{ position: 60, label: 'Valid To' }]
+  ValidTo;
+
+  @UI.selectionField: [{ position: 50 }]
+  @UI.lineItem: [{ position: 70, label: 'Status' }]
+  @UI.identification: [{ position: 70, label: 'Status' }]
+   @UI.textArrangement: #TEXT_ONLY   /* <--- Add this line! */
+  Status;
+  
+  /* This puts the QR image directly into the main Badge Table! */
+  @UI.lineItem: [{ position: 80, label: 'QR Code' }]
+  QrImage;
+
+  /* --- ADMIN DATA (Hidden from List, visible in Object Page) --- */
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+  @UI.fieldGroup: [{ qualifier: 'AdminGroup', position: 10 }]
+  CreatedBy;
+
+  @UI.fieldGroup: [{ qualifier: 'AdminGroup', position: 20 }]
+  CreatedAt;
+
+  @UI.fieldGroup: [{ qualifier: 'AdminGroup', position: 30 }]
+  LastChangedBy;
+
+  @UI.fieldGroup: [{ qualifier: 'AdminGroup', position: 40 }]
+  LastChangedAt;
+}

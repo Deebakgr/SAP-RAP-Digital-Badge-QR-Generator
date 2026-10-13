@@ -1,0 +1,48 @@
+unmanaged implementation in class zbp_i_badge_hdr unique;
+strict ( 2 );
+with draft; // Enables draft handling for the app
+
+define behavior for ZI_BADGE_HDR alias Badge
+draft table zbadge_hdr_d // The shadow table for header drafts
+lock master
+total etag LastChangedAt
+authorization master ( instance )
+{
+  create;
+  update;
+  delete;
+
+  field ( mandatory : create ) BadgeId;
+  field ( readonly : update ) BadgeId;
+
+  field ( readonly ) CreatedBy, CreatedAt, LastChangedBy, LastChangedAt, LocalLastChangedAt;
+
+  // Standard draft lifecycle actions
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+action GenerateQRCode result [1] $self;
+  association _QRData { create; with draft; }
+}
+
+define behavior for ZI_QR_DATA alias QrData
+draft table zqr_data_d // The shadow table for QR data drafts
+lock dependent by _Badge
+authorization dependent by _Badge
+{
+  update;
+  delete;
+
+  field ( mandatory : create ) QrId;
+  field ( readonly : update ) QrId;
+
+  field ( readonly ) BadgeId;
+  field ( readonly ) QrImage, MimeType, QrPayload;
+
+  field ( readonly ) CreatedBy, CreatedAt;
+
+  association _Badge { with draft; }
+}

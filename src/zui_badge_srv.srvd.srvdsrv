@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition for Badge App'
+define service ZUI_BADGE_SRV {
+  expose ZC_BADGE_HDR as BadgeInfo;
+  expose ZC_QR_DATA   as QrData;
+}
